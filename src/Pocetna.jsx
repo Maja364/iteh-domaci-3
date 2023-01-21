@@ -1,10 +1,24 @@
+import { useState } from "react";
 import RedTabele from "./RedTabele";
 
  
 
 function Pocetna({pregledi}) {
+    const [sort, setSort] = useState(true);
+    function sortAsc(){
+    
+        setSort(true);
+      }
+      function sortDesc(){
+        
+        setSort(false);
+      }
     return (
       <div className="pocetna"  >
+            <div className="buttons">
+                <button className="btn primary" onClick={sortAsc}>Sortiraj rastuće</button>
+                <button className="btn primary" onClick={sortDesc}>Sortiraj opadajuće</button>
+            </div>
         <table className="table">
             <thead>
                 <tr>
@@ -20,8 +34,15 @@ function Pocetna({pregledi}) {
                 </tr>
             </thead>
             <tbody>
-                {pregledi.map((p)=><RedTabele p={p} key={p.id}></RedTabele>
+                {sort === true ? 
                 
+                        pregledi
+                        .sort((a, b) => a.cena < b.cena ? -1 : 1)
+                        .map((p)=><RedTabele p={p} key={p.id}></RedTabele>)
+                :
+                    pregledi
+                    .sort((a, b) => a.cena > b.cena ? -1 : 1)
+                    .map((p)=><RedTabele p={p} key={p.id}></RedTabele>
                 )}
 
            
