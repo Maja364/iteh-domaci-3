@@ -38,6 +38,8 @@ function Pocetna({pregledi}) {
             <div className="buttons">
                 <button className="btn primary" onClick={sortAsc}>Sortiraj rastuće</button>
                 <button className="btn primary" onClick={sortDesc}>Sortiraj opadajuće</button>
+
+                
                 <input
                 id="myInput"
                 type="text"
